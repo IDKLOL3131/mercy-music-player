@@ -1,0 +1,88 @@
+:root{
+  --primary:#bf40bf;
+  --dark:#0f0f14;
+  --card:#181822;
+  --hover:#232332;
+  --text:#fff;
+  --light-bg:#f0f0f0;
+  --light-text:#000;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--dark);
+  color:var(--text);
+  transition:background 0.5s,color 0.5s;
+}
+.hidden{display:none;}
+button{cursor:pointer;border:none;background:none;color:white;font-size:20px;}
+
+/* Sidebar */
+.sidebar{
+  width:260px;
+  background:#000;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+.logo-symbol{position:relative;width:40px;height:40px;}
+.wing{position:absolute;width:18px;height:28px;background:yellow;border-radius:50%;top:8px;}
+.left{left:0;transform:rotate(-25deg);}
+.right{right:0;transform:rotate(25deg);}
+.halo{position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:10px;border:3px solid yellow;border-radius:50%;}
+.logo h2{color:var(--primary);margin:0;font-size:24px;}
+.sidebar li{list-style:none;margin:15px 0;cursor:pointer;transition:color 0.3s;}
+.sidebar li:hover{color:var(--primary);}
+
+/* Main */
+.main{flex:1;padding:20px;overflow:auto;}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:20px;
+}
+.card{
+  background:var(--card);
+  padding:15px;
+  border-radius:10px;
+  transition:.3s;
+  cursor:pointer;
+}
+.card:hover{
+  background:var(--hover);
+  transform:scale(1.05);
+}
+.card img{width:100%;border-radius:8px;}
+
+/* Player */
+.player{
+  position:fixed; bottom:0; left:260px; right:0;
+  background:#111; padding:15px;
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.progress{flex:1;height:6px;background:#333;border-radius:6px;cursor:pointer;position:relative;}
+.progress-bar{height:100%;width:0%;background:var(--primary);}
+.eq{display:flex;gap:3px;height:20px;}
+.eq div{width:4px;background:var(--primary);animation:bounce 1s infinite ease-in-out;}
+.eq div:nth-child(2){animation-delay:.2s;}
+.eq div:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,100%{height:5px;}50%{height:20px;}}
+
+/* Volume slider */
+input[type=range]{-webkit-appearance:none;width:100px;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;background:var(--primary);width:12px;height:12px;border-radius:50%;cursor:pointer;}
+input[type=range]::-webkit-slider-runnable-track{height:4px;background:#333;border-radius:4px;}
+
+/* Light mode */
+body.light{background:var(--light-bg);color:var(--light-text);}
+body.light .sidebar{background:#eee;}
+body.light .card{background:#fff;}
+body.light .card:hover{background:#ddd;}
+body.light .player{background:#ccc;}
